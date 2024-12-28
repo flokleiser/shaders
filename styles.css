@@ -1,0 +1,27 @@
+/* body {
+    margin:0;
+    overflow: hidden;
+}
+
+#canvas{
+    position: absolute;
+    left:50%;
+    top:50%;
+    transform: translate(-50%, -50%);
+   width: 800px;
+    height:600px;
+} */
+
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #222;
+    color: #fff;
+}
+
+canvas {
+    display: block;
+}
