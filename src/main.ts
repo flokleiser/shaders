@@ -15,7 +15,11 @@ async function main() {
 
     try {
         const vertexShaderSource = await loadShaderFile("./shaders/vert.glsl");
-        const fragmentShaderSource = await loadShaderFile("./shaders/frag.glsl");
+
+        // const fragmentShaderSource = await loadShaderFile("./shaders/uvmango.glsl");
+        // const fragmentShaderSource = await loadShaderFile("./shaders/blinking.glsl");
+        const fragmentShaderSource = await loadShaderFile("./shaders/waves.glsl");
+
         const vertexShader = compileShader(gl, vertexShaderSource, gl.VERTEX_SHADER);
         const fragmentShader = compileShader(gl, fragmentShaderSource, gl.FRAGMENT_SHADER);
         if (!vertexShader || !fragmentShader) {
@@ -26,7 +30,7 @@ async function main() {
         gl.useProgram(shaderProgram);
         
 
-        const resolutionUniformLocation = gl.getUniformLocation(shaderProgram, "uResolution");
+        const resolutionUniformLocation = gl.getUniformLocation(shaderProgram, "u_resolution");
         gl.uniform2f(resolutionUniformLocation, canvas.width, canvas.height);
 
         const vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
