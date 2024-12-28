@@ -1,4 +1,4 @@
 # Testing shaders
 
 ### stuff to look at:
-https://www.shadertoy.com/view/7tGfWm
+directly displaying glsl: https://github.com/patriciogonzalezvivo/glslCanvas
