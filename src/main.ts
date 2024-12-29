@@ -19,7 +19,22 @@ async function main() {
         // const fragmentShaderSource = await loadShaderFile("./shaders/uvmango.glsl");
         // const fragmentShaderSource = await loadShaderFile("./shaders/blinking.glsl");
         // const fragmentShaderSource = await loadShaderFile("./shaders/waves.glsl");
-        const fragmentShaderSource = await loadShaderFile("./shaders/wallpaper.glsl");
+        // const fragmentShaderSource = await loadShaderFile("./shaders/wallpaper.glsl");
+        // const fragmentShaderSource = await loadShaderFile("./shaders/glass.glsl");
+        // const fragmentShaderSource = await loadShaderFile("./shaders/voronoi.glsl");
+        // const fragmentShaderSource = await loadShaderFile("./shaders/pink.glsl");
+        
+
+        // const fragmentShaderSource = await loadShaderFile("./shaders/chrome.glsl");
+        // const fragmentShaderSource = await loadShaderFile("./shaders/porcellain.glsl");
+        // const fragmentShaderSource = await loadShaderFile("./shaders/trippy.glsl");
+        // const fragmentShaderSource = await loadShaderFile("./shaders/fract2.glsl");
+
+        const fragmentShaderSource = await loadShaderFile("./shaders/fract1.glsl");
+        // const fragmentShaderSource = await loadShaderFile("./shaders/aurora.glsl");
+        // const fragmentShaderSource = await loadShaderFile("./shaders/artdeco.glsl");
+        // const fragmentShaderSource = await loadShaderFile("./shaders/lines.glsl");
+        // const fragmentShaderSource = await loadShaderFile("./shaders/cool.glsl");
 
         const vertexShader = compileShader(gl, vertexShaderSource, gl.VERTEX_SHADER);
         const fragmentShader = compileShader(gl, fragmentShaderSource, gl.FRAGMENT_SHADER);
@@ -36,6 +51,17 @@ async function main() {
 
         const vertexPositionAttribute = gl.getAttribLocation(shaderProgram, "aVertexPosition");
         gl.enableVertexAttribArray(vertexPositionAttribute);
+
+        const uMouseLocation = gl.getUniformLocation(shaderProgram, 'u_mouse');
+        canvas.addEventListener('mousemove', (event) => {
+            const mouseX = event.clientX / canvas.width;
+            const mouseY = 1.0 - event.clientY / canvas.height;
+            const state = 1.0;
+            const extra = 0.0;
+            gl.uniform4f(uMouseLocation, mouseX, mouseY, state, extra);
+        });
+
+
 
         const vertices = new Float32Array([
             -1.0, -1.0,
