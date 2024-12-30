@@ -30,11 +30,13 @@ async function main() {
         // const fragmentShaderSource = await loadShaderFile("./shaders/trippy.glsl");
         // const fragmentShaderSource = await loadShaderFile("./shaders/fract2.glsl");
 
-        const fragmentShaderSource = await loadShaderFile("./shaders/fract1.glsl");
+        // const fragmentShaderSource = await loadShaderFile("./shaders/fract1.glsl");
         // const fragmentShaderSource = await loadShaderFile("./shaders/aurora.glsl");
         // const fragmentShaderSource = await loadShaderFile("./shaders/artdeco.glsl");
         // const fragmentShaderSource = await loadShaderFile("./shaders/lines.glsl");
         // const fragmentShaderSource = await loadShaderFile("./shaders/cool.glsl");
+
+        const fragmentShaderSource = await loadShaderFile("./shaders/wallpaperColors.glsl");
 
         const vertexShader = compileShader(gl, vertexShaderSource, gl.VERTEX_SHADER);
         const fragmentShader = compileShader(gl, fragmentShaderSource, gl.FRAGMENT_SHADER);
