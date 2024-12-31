@@ -36,7 +36,8 @@ function main() {
             // const fragmentShaderSource = await loadShaderFile("./shaders/artdeco.glsl");
             // const fragmentShaderSource = await loadShaderFile("./shaders/lines.glsl");
             // const fragmentShaderSource = await loadShaderFile("./shaders/cool.glsl");
-            const fragmentShaderSource = yield loadShaderFile("./shaders/wallpaperColors.glsl");
+            // const fragmentShaderSource = await loadShaderFile("./shaders/wallpaperColors.glsl");
+            const fragmentShaderSource = yield loadShaderFile("./shaders/wallpaper.glsl");
             const vertexShader = compileShader(gl, vertexShaderSource, gl.VERTEX_SHADER);
             const fragmentShader = compileShader(gl, fragmentShaderSource, gl.FRAGMENT_SHADER);
             if (!vertexShader || !fragmentShader) {

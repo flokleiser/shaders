@@ -1,5 +1,8 @@
 # Testing shaders
 
+### Goal: recreate this image:
+![reference](media/reference.jpg)
+
 ### stuff to look at:
 
 some book: https://thebookofshaders.com/05/
