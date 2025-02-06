@@ -59,13 +59,13 @@ vec4 aurora(vec3 ro, vec3 rd)
     col *= (clamp(rd.y*15.+.4,0.,1.));
     
     
-    //return clamp(pow(col,vec4(1.3))*1.5,0.,1.);
+    return clamp(pow(col,vec4(1.3))*1.5,0.,1.);
     //return clamp(pow(col,vec4(1.7))*2.,0.,1.);
     //return clamp(pow(col,vec4(1.5))*2.5,0.,1.);
     //return clamp(pow(col,vec4(1.8))*1.5,0.,1.);
     
     //return smoothstep(0.,1.1,pow(col,vec4(1.))*1.5);
-    return col*1.8;
+    // return col*1.8;
     //return pow(col,vec4(1.))*2.
 }
 

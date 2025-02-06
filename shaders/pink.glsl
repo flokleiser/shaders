@@ -12,7 +12,7 @@ float colormap_red(float x) {
     } else if (x < 20049.0 / 82979.0) {
         return (829.79 * x + 54.51) / 255.0;
     } else {
-        return 1.0;
+        return 0.0;
     }
 }
 

@@ -23,21 +23,18 @@ function main() {
             // const fragmentShaderSource = await loadShaderFile("./shaders/uvmango.glsl");
             // const fragmentShaderSource = await loadShaderFile("./shaders/blinking.glsl");
             // const fragmentShaderSource = await loadShaderFile("./shaders/waves.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/wallpaper.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/glass.glsl");
             // const fragmentShaderSource = await loadShaderFile("./shaders/voronoi.glsl");
             // const fragmentShaderSource = await loadShaderFile("./shaders/pink.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/chrome.glsl");
             // const fragmentShaderSource = await loadShaderFile("./shaders/porcellain.glsl");
             // const fragmentShaderSource = await loadShaderFile("./shaders/trippy.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/fract2.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/fract1.glsl");
             // const fragmentShaderSource = await loadShaderFile("./shaders/aurora.glsl");
             // const fragmentShaderSource = await loadShaderFile("./shaders/artdeco.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/lines.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/cool.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/wallpaperColors.glsl");
-            const fragmentShaderSource = yield loadShaderFile("./shaders/wallpaper.glsl");
+            // const fragmentShaderSource = await loadShaderFile("wallpaper.glsl");
+            // const fragmentShaderSource = await loadShaderFile("./shader_tests/fract1.glsl");
+            // const fragmentShaderSource = await loadShaderFile("./shader_tests/cool.glsl");
+            const fragmentShaderSource = yield loadShaderFile("./shader_tests/lines.glsl");
+            // const fragmentShaderSource = await loadShaderFile("./shader_tests/chrome.glsl");
+            // const fragmentShaderSource = await loadShaderFile("./shader_tests/glass.glsl");
             const vertexShader = compileShader(gl, vertexShaderSource, gl.VERTEX_SHADER);
             const fragmentShader = compileShader(gl, fragmentShaderSource, gl.FRAGMENT_SHADER);
             if (!vertexShader || !fragmentShader) {

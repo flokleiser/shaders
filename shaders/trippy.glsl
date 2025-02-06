@@ -7,7 +7,6 @@ uniform float u_time;
 uniform vec4 u_mouse;
 
 
-
 #define PI  	3.14159265357989
 #define TAU 	(PI * 2.0)
 #define HEX_COS (0.86602540378443 * 0.5)

@@ -44,9 +44,9 @@ float dist(vec2 p)
     float t = 196.+u_time/20.;
     for (float i = 0.; i < 3.; ++i) {
         p.x = abs(p.x)-a;
-        p *= rot(t/a);
+        // p *= rot(t/a);
         d = smin(abs(length(p)-a), d, 1.5*a);
-        a /= 2.;
+        // a /= 2.;
     }
     
     // outline

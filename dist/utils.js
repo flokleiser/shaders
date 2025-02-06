@@ -1,6 +1,3 @@
-// export function initWebGL(canvas: HTMLCanvasElement): WebGLRenderingContext | null {
-//     return canvas.getContext('webgl');
-//   }
 export function compileShader(gl, source, type) {
     const shader = gl.createShader(type);
     if (!shader)
