@@ -6,7 +6,8 @@ uniform vec2 u_resolution;
 uniform float u_time;
 uniform vec4 u_mouse;
 
-#define S smoothstep
+// #define S smoothstep
+#define S smoothstep 
 
 vec4 Line(vec2 uv, float speed, float height, vec3 col) {
     uv.y += S(1., 0., abs(uv.x)) * sin(u_time * speed + uv.x * height) * .2;
@@ -14,18 +15,15 @@ vec4 Line(vec2 uv, float speed, float height, vec3 col) {
 }
 
 void main() {
-    // Declare and compute the input UV coordinates
     vec2 uv = (gl_FragCoord.xy - 0.5 * u_resolution.xy) / u_resolution.y;
     
-    // Declare the output color
-    vec4 O = vec4(0.0);
+    vec4 Output = vec4(0.0);
 
     // Loop to accumulate lines
-    for (float i = 0.; i <= 5.; i += 1.) {
+    for (float i = 0.; i <= 10.; i += 1.) {
         float t = i / 5.;
-        O += Line(uv, 1.0 + t, 4.0 + t, vec3(0.2 + t * 0.7, 0.2 + t * 0.4, 0.3));
+        Output += Line(uv, 1.0 + t, 4.0 + t, vec3(0.2 + t * 0.7, 0.2 + t * 0.4, 0.3));
     }
 
-    // Set the final fragment color
-    gl_FragColor = O;
+    gl_FragColor = Output;
 }
