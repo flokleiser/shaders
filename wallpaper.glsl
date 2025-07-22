@@ -70,8 +70,8 @@ void main() {
     vec3 col4 = scene(((fragCoord * 2.0) + vec2(0.0, 0.5)) / u_resolution.xy);
 
     //right side
-    fragCoord = rotate(fragCoord + vec2(-700.0, 750.0), -1.3);
-    vec3 col5 = scene(((fragCoord * 2.0) + vec2(1.0, 0.0)) / u_resolution.xy);
+    // fragCoord = rotate(fragCoord + vec2(-700.0, 750.0), -1.3);
+    // vec3 col5 = scene(((fragCoord * 2.0) + vec2(1.0, 0.0)) / u_resolution.xy);
 
     // vec3 col6 = scene(((fragCoord * 3.0) + vec2(1.0, 0.0)) / u_resolution.xy);
     // vec3 col7 = scene(((fragCoord * 4.0) + vec2(1.0, 1.0)) / u_resolution.xy);
@@ -81,6 +81,6 @@ void main() {
     // gl_FragColor = vec4((col0 + col1 + col2 + col3) / 4.0, 1.0);
     // gl_FragColor = vec4((col0 + col1 + col2 + col3 + col4) / 5.0, 1.0);
 
-    gl_FragColor = vec4((col0 + col1 + col2 + col3 + col4 + col5) / 6.0, 1.0);
-    // gl_FragColor = vec4((col0 + col1 + col2 + col3 + col4) / 6.0, 1.0);
+    // gl_FragColor = vec4((col0 + col1 + col2 + col3 + col4 + col5) / 6.0, 1.0);
+    gl_FragColor = vec4((col0 + col1 + col2 + col3 + col4) / 6.0, 1.0);
 }

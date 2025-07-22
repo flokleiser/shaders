@@ -13,6 +13,34 @@ import { createProgram } from "./utils.js";
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const canvas = document.getElementById("glCanvas");
+        const audioCtx = new AudioContext();
+        const analyser = audioCtx.createAnalyser();
+        analyser.fftSize = 128;
+        const frequencyData = new Uint8Array(analyser.frequencyBinCount);
+        const normalizedData = new Float32Array(frequencyData.length);
+        const audio = new Audio('../audio/check1.mp3');
+        audio.loop = true;
+        audio.crossOrigin = 'anonymous';
+        const source = audioCtx.createMediaElementSource(audio);
+        source.connect(analyser);
+        analyser.connect(audioCtx.destination);
+        const audioToggle = document.getElementById("audioToggle");
+        let isPlaying = false;
+        audioToggle.addEventListener("click", () => __awaiter(this, void 0, void 0, function* () {
+            if (audioCtx.state === "suspended") {
+                yield audioCtx.resume();
+            }
+            if (!isPlaying) {
+                audio.play();
+                isPlaying = true;
+                audioToggle.textContent = "⏸️ Pause";
+            }
+            else {
+                audio.pause();
+                isPlaying = false;
+                audioToggle.textContent = "▶️ Play";
+            }
+        }));
         if (!canvas)
             throw new Error("no canvas");
         canvas.width = window.innerWidth;
@@ -20,21 +48,7 @@ function main() {
         const gl = canvas.getContext("webgl") || canvas.getContext("experimental-webgl");
         try {
             const vertexShaderSource = yield loadShaderFile("./shaders/vert.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/uvmango.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/blinking.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/waves.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/voronoi.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/pink.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/porcellain.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/trippy.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/aurora.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shaders/artdeco.glsl");
-            // const fragmentShaderSource = await loadShaderFile("wallpaper.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shader_tests/fract1.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shader_tests/cool.glsl");
-            const fragmentShaderSource = yield loadShaderFile("./shader_tests/lines.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shader_tests/chrome.glsl");
-            // const fragmentShaderSource = await loadShaderFile("./shader_tests/glass.glsl");
+            const fragmentShaderSource = yield loadShaderFile("./shader_tests/live.glsl");
             const vertexShader = compileShader(gl, vertexShaderSource, gl.VERTEX_SHADER);
             const fragmentShader = compileShader(gl, fragmentShaderSource, gl.FRAGMENT_SHADER);
             if (!vertexShader || !fragmentShader) {
@@ -54,6 +68,7 @@ function main() {
                 const extra = 0.0;
                 gl.uniform4f(uMouseLocation, mouseX, mouseY, state, extra);
             });
+            const uAudioDataLocation = gl.getUniformLocation(shaderProgram, "u_audio");
             const vertices = new Float32Array([
                 -1.0, -1.0,
                 1.0, -1.0,
@@ -69,6 +84,11 @@ function main() {
             function render() {
                 let currentTime = (Date.now() - startTime) / 1000.0;
                 gl.uniform1f(gl.getUniformLocation(shaderProgram, "u_time"), currentTime);
+                analyser.getByteFrequencyData(frequencyData);
+                for (let i = 0; i < frequencyData.length; i++) {
+                    normalizedData[i] = frequencyData[i] / 255;
+                }
+                gl.uniform1fv(uAudioDataLocation, normalizedData);
                 gl.clear(gl.COLOR_BUFFER_BIT);
                 gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
                 requestAnimationFrame(render);
